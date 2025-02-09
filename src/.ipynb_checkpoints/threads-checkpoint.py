@@ -9,7 +9,7 @@ def run_threads():
     total_start_time = time.time()
 
     # Number of items for each task
-    num_items = 1000
+    num_items = 10000
     split_size = num_items // 2
 
     # Create threads for both functions, dividing the work
@@ -35,3 +35,4 @@ def run_threads():
 
     total_end_time = time.time()
     print(f"Total time taken (threading): {total_end_time - total_start_time} seconds")
+    return total_end_time - total_start_time
