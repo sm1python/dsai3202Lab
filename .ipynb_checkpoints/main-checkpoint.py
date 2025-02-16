@@ -2,7 +2,7 @@ import time
 import random
 from src.thread import *
 from src.multiprocessing import *
-from src.process import *
+from src.sequential import *
 """
 Runs the summation functions sequentially, using threads, and using processes.
 Measures execution time for each approach and prints the results.
