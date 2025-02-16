@@ -1,22 +1,3 @@
-# import multiprocessing
-
-# def worker(process_id):
-#     print(f"process {process_id} started")
-#     print(f"process {process_id} finished")
-
-# num_processes = 4
-
-# processes =[]
-# for i in range(num_processes):
-#     process = multiprocessing.Process(target=worker, args=(i,))
-#     process.append(process)
-#     process.start()
-
-# for process in processes:
-#     process.join()
-
-# print("all done")
-
 import multiprocessing
 
 """

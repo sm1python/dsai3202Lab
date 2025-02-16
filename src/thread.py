@@ -1,22 +1,3 @@
-# import threading
-
-# def worker(thread_id):
-#     print(f"Thread {thread_id} started")
-#     print(f"Thread {thread_id} finished")
-
-# num_threads = 4
-
-# threads =[]
-# for i in range(num_threads):
-#     thread = threading.Thread(target=worker, args=(i,))
-#     thread.append(thread)
-#     thread.start()
-
-# for thread in threads:
-#     thread.join()
-
-# print("all done")
-
 import threading
 
 """
