@@ -1,13 +1,11 @@
 import time
-from sklearn.metrics import mean_absolute_percentage_error
 from threading import Thread, Lock
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 from math import sqrt
-
 
 # Load the train_dataset
 file_path = 'data/housing_prices_data/train.csv'
@@ -61,9 +59,6 @@ rmse_filled = sqrt(mean_squared_error(y_val, y_val_pred_filled))
 
 # Print the RMSE
 print(f'RMSE on the validation data: {rmse_filled}')
-
-import time
-from sklearn.metrics import mean_absolute_percentage_error
 
 start_time = time.time()
 
