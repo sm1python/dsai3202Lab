@@ -1,18 +1,16 @@
 import time
 from threading import Thread
-from src.simulate_sensor import simulate_sensor
+from src.simulate_sensor import simulate_sensor, latest_temperatures, temperature_averages
 from src.process_temperatures import process_temperatures
-from src.utils import latest_temperatures, temperature_averages
 
-# Display the latest temperatures and averages
+
 def display_temperatures():
     while True:
         print("\033[H\033[J")  # Clear the console screen
         print("=" * 43)
         print("Sensor ID \t Latest Temp \t Avg Temp")
         print("=" * 43)
-
-        # Display the latest temperature and average for each sensor
+        
         for sensor_id in latest_temperatures:
             latest_temp = latest_temperatures[sensor_id]
             avg_temp = temperature_averages.get(sensor_id, "N/A")
@@ -23,14 +21,13 @@ def display_temperatures():
             else:
                 print(f"{sensor_id:9} \t {latest_temp:11} \t {'--':8}")
         
-        time.sleep(5)  # Wait for 5 seconds before updating again
+        time.sleep(5)
 
-# Main program execution
+# Main
 def main():
-    # Initialize sensor IDs
+    # set sensor IDs
     sensor_ids = ["sensor_1", "sensor_2", "sensor_3"]
-    
-    # Start sensor threads
+
     for sensor_id in sensor_ids:
         thread = Thread(target=simulate_sensor, args=(sensor_id,), daemon=True)
         thread.start()
@@ -46,7 +43,7 @@ def main():
     # Keep the main thread running
     try:
         while True:
-            time.sleep(1)  # Main thread sleeps to allow daemon threads to work
+            time.sleep(1)
     except KeyboardInterrupt:
         print("Simulation stopped.")
 

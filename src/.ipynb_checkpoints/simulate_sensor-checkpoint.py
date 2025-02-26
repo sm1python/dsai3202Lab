@@ -1,19 +1,24 @@
 import random
 import time
 from threading import RLock
-from src.utils import data_lock, temperature_queue, latest_temperatures
+import queue
 
-# Simulate temperature sensor readings
+latest_temperatures = {}
+temperature_averages = {}
+temperature_queue = queue.Queue(maxsize=10)
+
+data_lock = RLock()
+
 def simulate_sensor(sensor_id):
     while True:
-        temperature = random.randint(15, 40)  # Generate a random temperature
+        temperature = random.randint(15, 40)
         with data_lock:
-            latest_temperatures[sensor_id] = temperature  # Update the latest temperature
+            latest_temperatures[sensor_id] = temperature
 
         if not temperature_queue.full():
-            temperature_queue.put(temperature)  # Add the temperature to the queue
+            temperature_queue.put(temperature)
         else:
-            temperature_queue.get()  # Remove old readings if the queue is full
-            temperature_queue.put(temperature)  # Add the new one
+            temperature_queue.get()
+            temperature_queue.put(temperature)
 
-        time.sleep(1)  # Wait before simulating next reading
+        time.sleep(1)
