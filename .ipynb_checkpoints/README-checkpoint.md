@@ -18,6 +18,7 @@ Q) How would u add cars to the problem?
     2) Instead of a single distance, the fitness function should sum the distances of all cars while balancing the load.
 
 --------------------outputs:-----------------------
+
 ### city_distances.csv
 sequential part:
 Total Distance: -1187.0
@@ -30,6 +31,11 @@ Total Time: 121.83 seconds
 enhanced part:
 Total Distance: -1104.0
 Total Time: 28.70 seconds
+
+Distributed part:
+Total Distance: -1350.0
+Total Time: 133.63 seconds
+
 
 ### city_distances_extended.csv
 
