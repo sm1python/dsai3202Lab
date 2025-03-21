@@ -9,8 +9,8 @@ from genetic_algorithms_functions import calculate_fitness, \
 
 start = time.time()
 # Load the distance matrix
-distance_matrix = pd.read_csv('../datasets/city_distances.csv').to_numpy()
-# distance_matrix = pd.read_csv('../datasets/city_distances_extended.csv').to_numpy()
+# distance_matrix = pd.read_csv('../datasets/city_distances.csv').to_numpy()
+distance_matrix = pd.read_csv('../datasets/city_distances_extended.csv').to_numpy()
 
 # Parameters
 num_nodes = distance_matrix.shape[0]
