@@ -122,14 +122,14 @@ All explorers solved the maze using the same logic and maze layout. Below are th
 2. **Extremely Fast Execution Times (0.00 seconds)**  
    The recorded execution time for each explorer was reported as `0.00 seconds`. This likely means:
    - The actual time was **less than 0.01 seconds**, rounding down in the float display.
-   - The code executed almost instantly due to **disabled visualization** and **static maze predictability**.
+   - The code executed almost instantly due to **disabled visualization**.
    - The high performance metrics (`~1 million moves/sec`) confirm the speed.
 
 3. **No Backtracking Needed**  
    Since the maze was straightforward for the right-hand rule algorithm, none of the explorers triggered the loop detection or backtracking logic.
 
 4. **Parallel Execution Efficiency**  
-   Running explorers in parallel using MPI ensured full CPU utilization across cores or machines. The performance gain here is in **reduced overall runtime** and **better scalability**, especially valuable when running many unique mazes or randomized inputs.
+   Running explorers in parallel using MPI ensured full CPU utilization across cores or machines. The performance gain here is in **better scalability**, especially valuable when running many unique mazes or randomized inputs.
 
 ---
 ---
@@ -141,10 +141,10 @@ All explorers solved the maze using the same logic and maze layout. Below are th
 After analyzing the current implementation of the maze explorer (based on the **right-hand rule**), we identified the following key limitations:
 
 - **Inefficient Navigation**  
-  The right-hand rule often takes **unoptimal paths**, especially in open mazes. It blindly follows the right wall, which leads to unnecessary moves and longer solve times.
+  The right-hand rule often takes **unoptimal paths**. It blindly follows the right wall, which leads to unnecessary moves and longer solve times.
 
 - **Poor Loop and Trap Detection**  
-  Loop detection is minimal (only checks last 3 moves). It may not effectively prevent the explorer from revisiting the same areas in complex mazes (but that's not a problem for the right-wall rule but rather for all other techniques).
+  Loop detection is minimal (only checks last 3 moves). It may not effectively prevent the explorer from revisiting the same areas in complex mazes.
 
 - **Limited Intelligence in Decision-Making**  
   The explorer doesn’t consider the actual **goal position** during navigation. It makes decisions based only on local surroundings, not the global structure of the maze.
@@ -155,9 +155,9 @@ After analyzing the current implementation of the maze explorer (based on the **
 
 To overcome the above limitations, we propose the following enhancements:
 
-| Improvement                          | Description                                                                 |
+| Improvement                          | Description                                                                |
 |--------------------------------------|-----------------------------------------------------------------------------|
-| **A* Search Algorithm**              | Replace the wall-following logic with A*, a heuristic-based optimal path finder. |
+| **A\* Search Algorithm**             | Replace the wall-following logic with A*, a heuristic-based optimal path finder. |
 | **Manhattan Distance Heuristic**     | Use a heuristic to estimate the cost from current cell to goal (faster search). |
 | Smarter Loop Detection               | Implement history-based loop detection using a set of visited nodes.       |
 | Dynamic Path Replanning              | Recompute the best path periodically if the maze or conditions change.     |
@@ -251,11 +251,10 @@ We compared both versions of the maze explorer — the **original** (right-hand 
 
 #### Collected Metrics
 
-| Metric                      | Original Explorer         | Enhanced Explorer         |
+| Metric                     | Original Explorer         | Enhanced Explorer         |
 |----------------------------|---------------------------|---------------------------|
 | **Avg. Time Taken**        | 0.00 s                    | 0.00 s                    |
 | **Avg. Moves Made**        | 1279                      | 127                       |
-| **Backtrack Operations**   | 0                         | 0                         |
 | **Avg. Moves/sec**         | ~988,880                  | ~70,363                   |
 
 
@@ -289,12 +288,12 @@ We compared both versions of the maze explorer — the **original** (right-hand 
 
 #### Final Verdict
 
-| Category                | Winner          | Why?                                        |
-|------------------------|-----------------|---------------------------------------------|
-| **Total Moves**        | Enhanced        | Finds the shortest path                     |
-| **CPU Efficiency**     | Original        | Raw move speed (less logic per step)        |
-| **Smart Navigation**   | Enhanced        | Uses heuristics and avoids backtracking     |
-| **Scalability**        | Enhanced        | Better suited for large/complex mazes       |
+| Category               | Winner          | Why?                                         |
+|------------------------|-----------------|----------------------------------------------|
+| **Total Moves**        | Enhanced        | Finds the shortest path                      |
+| **speed**              | Original        | Raw move speed (less logic per step)         |
+| **Smart Navigation**   | Enhanced        | Uses heuristics and avoids backtracking      |
+| **Scalability**        | Enhanced        | Better suited for solving large/complex mazes|
 
 > 🏁 **Conclusion**:  
 > The enhanced A* explorer **massively improves navigation quality** by reducing total moves from **1279 ➝ 127**. While the move-per-second rate is lower due to smarter planning, this is a worthy trade-off for much better efficiency and accuracy in pathfinding.
