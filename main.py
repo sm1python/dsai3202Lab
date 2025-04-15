@@ -17,6 +17,12 @@ def explorer_task(maze_type, width, height, visualize):
     # Optional: track backtracks if implemented
     backtracks = getattr(explorer, 'backtracks', None)
 
+    # print(f"\nPath taken by explorer (length {len(moves)}):")
+    # lst = []
+    # for step in moves:
+    #     lst.append(step)
+    # print(lst)
+
     return (time_taken, len(moves), backtracks)
 
 def compare_results(results):

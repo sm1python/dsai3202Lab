@@ -6,6 +6,7 @@ import argparse
 from mpi4py import MPI
 from src.enhanced_explorer import Explorer
 from src.maze import create_maze
+# from src.explorer import Explorer
 
 def explorer_task(maze_type, width, height, visualize):
     maze = create_maze(width, height, maze_type)
@@ -15,6 +16,12 @@ def explorer_task(maze_type, width, height, visualize):
     
     # Optional: track backtracks if implemented
     backtracks = getattr(explorer, 'backtracks', None)
+
+    # print(f"\nPath taken by explorer (length {len(moves)}):")
+    # lst = []
+    # for step in moves:
+    #     lst.append(step)
+    # print(lst)
 
     return (time_taken, len(moves), backtracks)
 
