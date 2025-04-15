@@ -4,7 +4,7 @@ Main entry point for the Maze Runner game.
 
 import argparse
 from mpi4py import MPI
-from src.enhanced_explorer import Explorer
+from src.enhanced_explorer import Explorer # comment this if youre going to uncomment the below 
 from src.maze import create_maze
 # from src.explorer import Explorer
 
