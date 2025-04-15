@@ -48,7 +48,6 @@ These statistics give insight into:
 
 - The solver successfully navigated the maze **without visual backtracking**, implying the right-hand rule was sufficient.
 - The move count (1279) is relatively high, which might suggest a **complex or winding maze**.
-- A consistent average speed of over 30 moves per second shows a **high-performance implementation**, especially without delays from visualization.
 
 ---
 ---
